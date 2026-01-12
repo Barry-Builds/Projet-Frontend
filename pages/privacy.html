@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Politique de Confidentialité - Old Style. Découvrez comment nous protégeons vos données personnelles.">
+    <meta name="keywords" content="politique de confidentialité, protection des données, confidentialité">
+    <title>Politique de Confidentialité - Old Style</title>
+    <link rel="stylesheet" href="../style/styles.css">
+    <link rel="stylesheet" href="../style/payment-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVJkEZSMUkrQ6bsyoCLqtKK6xUn8KkEtx7xKEaFZcKnUNBoWHChbEu4dwvsNv+5RrGcheA8qDKw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+
+<body>
+    <header class="header" role="banner" aria-label="En-tête du site Old Style">
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Old Style</h1>
+                    <p class="tagline">Mode Vintage de Qualité Supérieure</p>
+                </a>
+            </div>
+            <!-- Navigation principale -->
+            <nav class="navbar" role="navigation" aria-label="Navigation principale">
+                <a href="../index.html" class="nav-link">Accueil</a>
+                <a href="vetements.html" class="nav-link">Vêtements</a>
+                <a href="accessoires.html" class="nav-link">Accessoires</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="cart-btn" id="cartBtn" aria-label="Ouvrir le panier d'achat">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                    </svg>
+                    <span class="cart-count" id="cartCount" aria-live="polite" aria-label="Nombre d'articles dans le panier"></span>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Afficher le menu mobile" aria-expanded="false">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Barre latérale du panier d'achat -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Mon Panier</h2>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Votre panier est vide</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-promo">
+                <p>Livraison gratuite à partir de 100€</p>
+            </div>
+            <div class="cart-shipping" id="cartShipping" style="display: none;">
+                <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 600; padding-bottom: 10px; border-bottom: 1px solid var(--border-color);">
+                    <strong>Frais de livraison:</strong>
+                    <strong>10.00€</strong>
+                </div>
+            </div>
+            <div class="cart-total">
+                <strong>Total:</strong>
+                <strong id="cartTotal">0.00€</strong>
+            </div>
+            <button class="cta-btn checkout-btn">Commander</button>
+            <button class="btn-secondary" id="continueShopping">Continuer vos achats</button>
+        </div>
+        <!-- Overlay du panier d'achat -->
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="payment-modal" id="paymentModal">
+        <div class="payment-content">
+            <button class="close-payment" id="closePayment">&times;</button>
+            <h2>Informations de Paiement</h2>
+            <form id="paymentForm" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Nom complet <span>*</span></label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Votre nom complet" required>
+                        <span class="error-message" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Adresse <span>*</span></label>
+                        <input type="text" id="address" name="address" placeholder="Votre adresse" required>
+                        <span class="error-message" role="alert"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">Ville <span>*</span></label>
+                        <input type="text" id="city" name="city" placeholder="Votre ville" required>
+                        <span class="error-message" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="zipCode">Code Postal <span>*</span></label>
+                        <input type="text" id="zipCode" name="zipCode" placeholder="Votre code postal" required>
+                        <span class="error-message" role="alert"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cardNumber">Numéro de carte <span>*</span></label>
+                    <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 1234 1234 1234" required>
+                    <span class="error-message" role="alert"></span>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expiryDate">Date d'expiration <span>*</span></label>
+                        <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/AA" required>
+                        <span class="error-message" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvc">CVV <span>*</span></label>
+                        <input type="text" id="cvc" name="cvc" placeholder="CVV" required>
+                        <span class="error-message" role="alert"></span>
+                    </div>
+                </div>
+                <button type="submit" class="cta-btn" style="width: 100%;">Finaliser l'achat</button>
+            </form>
+        </div>
+    </div>
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="confirmation-content">
+            <h2>Commande Confirmée ✓</h2>
+            <p class="confirmation-message">Livraison dans moins d'une semaine à l'adresse suivante :</p>
+            <div class="confirmation-address" id="confirmationAddress"></div>
+            <button class="cta-btn" onclick="closePaymentFlow()">Fermer</button>
+        </div>
+    </div>
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal"><i class="fas fa-times"></i></button>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="Produit">
+                <div class="modal-info">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription"></p>
+                    <div class="modal-price">
+                        <span id="modalPrice"></span>
+                    </div>
+                    <div class="size-selector">
+                        <label>Taille:</label>
+                        <div class="sizes" id="sizeOptions">
+                        </div>
+                    </div>
+                    <div class="quantity-selector">
+                        <label>Quantité:</label>
+                        <div class="quantity-control">
+                            <button id="decreaseQty">-</button>
+                            <input type="number" id="quantity" value="1" min="1">
+                            <button id="increaseQty">+</button>
+                        </div>
+                    </div>
+                    <button class="cta-btn add-to-cart-btn" id="addToCartBtn">Ajouter au panier</button>
+                    <div class="product-details">
+                        <h4>Détails du produit</h4>
+                        <p id="modalDetails"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Texte complet de la politique de confidentialité-->
+    <section class="privacy-section">
+        <div class="container">
+            <h1>Politique de Confidentialité</h1>
+            <p class="last-updated">Dernière mise à jour : Janvier 2026</p>
+            <div class="privacy-content">
+                <div class="privacy-article">
+                    <h2>1. Introduction</h2>
+                    <p>
+                        Chez Old Style, nous respectons votre vie privée et nous engageons à protéger vos données personnelles. 
+                        Cette Politique de Confidentialité explique comment nous collectons, utilisons, conservons et protégeons 
+                        vos informations lorsque vous visitez notre site web et effectuez des achats auprès de nous.
+                    </p>
+                </div>
+                <div class="privacy-article">
+                    <h2>2. Informations que nous collectons</h2>
+                    <p>Nous collectons les informations suivantes pour traiter vos commandes et améliorer notre service :</p>
+                    <ul>
+                        <li><strong>Informations personnelles :</strong> Nom, adresse email, adresse postale, numéro de téléphone</li>
+                        <li><strong>Informations de livraison :</strong> Adresse de livraison, instructions spéciales de livraison</li>
+                        <li><strong>Informations de paiement :</strong> Données de carte bancaire (traitées de manière sécurisée)</li>
+                        <li><strong>Informations de navigation :</strong> Adresse IP, type de navigateur, pages visitées, durée de visite</li>
+                        <li><strong>Préférences :</strong> Historique d'achats, articles consultés, préférences de communication</li>
+                    </ul>
+                </div>
+                <div class="privacy-article">
+                    <h2>3. Utilisation de vos données</h2>
+                    <p>Nous utilisons vos données personnelles pour les finalités suivantes :</p>
+                    <ul>
+                        <li>Traiter et confirmer vos commandes</li>
+                        <li>Préparer et expédier vos achats</li>
+                        <li>Vous tenir informé de l'état de votre commande</li>
+                        <li>Vous contacter en cas de problème avec votre commande</li>
+                        <li>Améliorer notre site web et nos services</li>
+                        <li>Vous envoyer des informations sur nos nouveaux produits (avec votre consentement)</li>
+                        <li>Prévenir la fraude et assurer la sécurité de nos transactions</li>
+                        <li>Respecter nos obligations légales</li>
+                    </ul>
+                </div>
+                <div class="privacy-article">
+                    <h2>4. Partage de vos données</h2>
+                    <p>
+                        Nous ne vendons jamais vos données personnelles à des tiers. Cependant, nous partageons vos informations avec :
+                    </p>
+                    <ul>
+                        <li><strong>Prestataires logistiques :</strong> Pour l'expédition de vos commandes</li>
+                        <li><strong>Processeurs de paiement :</strong> Pour traiter vos paiements de manière sécurisée</li>
+                        <li><strong>Autorités légales :</strong> Si required par la loi</li>
+                    </ul>
+                    <p>
+                        Tous nos partenaires s'engagent à respecter la confidentialité de vos données et à les protéger 
+                        conformément aux lois applicables.
+                    </p>
+                </div>
+                <div class="privacy-article">
+                    <h2>5. Sécurité de vos données</h2>
+                    <p>
+                        Nous prenons des mesures de sécurité appropriées pour protéger vos données personnelles contre 
+                        l'accès non autorisé, la modification, la divulgation ou la destruction. Cela comprend :
+                    </p>
+                    <ul>
+                        <li>Chiffrement SSL pour les transactions en ligne</li>
+                        <li>Contrôle d'accès strict aux données sensibles</li>
+                        <li>Firewalls et systèmes de détection d'intrusion</li>
+                        <li>Formation du personnel sur la protection des données</li>
+                    </ul>
+                    <p>
+                        Bien que nous mettions en place des mesures de sécurité robustes, aucune méthode de transmission 
+                        sur Internet n'est garantie à 100% sécurisée.
+                    </p>
+                </div>
+                <div class="privacy-article">
+                    <h2>6. Conservation de vos données</h2>
+                    <p>
+                        Nous conservons vos données personnelles pour la durée nécessaire à la réalisation des finalités 
+                        pour lesquelles elles ont été collectées, y compris :
+                    </p>
+                    <ul>
+                        <li>Pendant la durée de votre relation commerciale avec Old Style</li>
+                        <li>Pour une période de 5 ans après votre dernier achat (à des fins de comptabilité)</li>
+                        <li>Aussi longtemps que nécessaire pour respecter nos obligations légales</li>
+                    </ul>
+                    <p>
+                        Après cette période, vos données seront supprimées ou rendues anonymes.
+                    </p>
+                </div>
+                <div class="privacy-article">
+                    <h2>7. Vos droits</h2>
+                    <p>Conformément à la loi, vous avez les droits suivants :</p>
+                    <ul>
+                        <li><strong>Droit d'accès :</strong> Vous pouvez demander une copie de vos données personnelles</li>
+                        <li><strong>Droit de rectification :</strong> Vous pouvez corriger vos données inexactes</li>
+                        <li><strong>Droit à l'oubli :</strong> Vous pouvez demander la suppression de vos données</li>
+                        <li><strong>Droit à la portabilité :</strong> Vous pouvez demander vos données dans un format portable</li>
+                        <li><strong>Droit d'opposition :</strong> Vous pouvez vous opposer à certains traitements</li>
+                    </ul>
+                    <p>
+                        Pour exercer ces droits, veuillez nous contacter à l'adresse email indiquée à la fin de cette politique.
+                    </p>
+                </div>
+                <div class="privacy-article">
+                    <h2>8. Communications marketing</h2>
+                    <p>
+                        Nous souhaitons vous tenir informé de nos nouvelles collections et offres spéciales. Vous pouvez vous 
+                        inscrire à notre newsletter lors de votre achat ou sur notre site web. Vous pouvez vous désabonner à tout 
+                        moment en cliquant sur le lien de désinscription à la fin de nos emails marketing.
+                    </p>
+                </div>
+                <div class="privacy-article">
+                    <h2>9. Modification de cette Politique</h2>
+                    <p>
+                        Nous nous réservons le droit de modifier cette Politique de Confidentialité à tout moment. Les modifications 
+                        seront effectives dès leur publication sur notre site web. Nous vous recommandons de consulter régulièrement 
+                        cette politique pour rester informé de nos pratiques en matière de protection des données.
+                    </p>
+                </div>
+                <div class="privacy-article">
+                    <h2>10. Nous contacter</h2>
+                    <p>
+                        Si vous avez des questions concernant cette Politique de Confidentialité ou sur la façon dont nous traitons 
+                        vos données personnelles, veuillez nous contacter :
+                    </p>
+                    <ul>
+                        <li><strong>Par email :</strong> <a href="mailto:privacy@oldstyle.fr">privacy@oldstyle.fr</a></li>
+                        <li><strong>Par courrier :</strong> Old Style, 116 Boulevard Jean Moulin, 49100, Fradnce</li>
+                        <li><strong>Par téléphone :</strong> <a href="tel:+33765564150">+33 7 65 56 41 50</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pied de page -->
+    <footer class="footer" role="contentinfo" aria-label="Pied de page du site">
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>&copy; 2026 Old Style. Tous droits réservés.</p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-links-section">
+                    <a href="privacy.html" class="footer-link-text">POLITIQUE DE CONFIDENTIALITÉ</a>
+                    <a href="cgv.html" class="footer-link-text">CONDITIONS GÉNÉRALES DE VENTE</a>
+                </div>
+                <div class="footer-social-section">
+                    <h3>SUIVEZ-NOUS</h3>
+                    <div class="social-links" role="navigation" aria-label="Liens vers les réseaux sociaux">
+                        <a href="https://www.facebook.com/oldstyle" class="social-link" aria-label="Facebook" title="Facebook">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="width: 60%; height: 60%;">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/oldstyle" class="social-link" aria-label="Instagram" title="Instagram">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="width: 60%; height: 60%;">
+                                <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2m-.3 2C5.3 4 4 5.3 4 7.5v9c0 2.2 1.3 3.5 3.5 3.5h9c2.2 0 3.5-1.3 3.5-3.5v-9c0-2.2-1.3-3.5-3.5-3.5h-9m11.6 1.6c.6 0 1 .4 1 1s-.4 1-1 1-1-.4-1-1 .4-1 1-1M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.twitter.com/oldstyle" class="social-link" aria-label="Twitter" title="Twitter">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="width: 60%; height: 60%;">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.6l-5.165-6.756-5.92 6.756h-3.31l7.73-8.835L2.67 2.25h6.76l4.67 6.852 5.373-6.852zM17.04 18.586h1.823L6.983 4.045H5.05L17.04 18.586z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.pinterest.com/oldstyle" class="social-link" aria-label="Pinterest" title="Pinterest">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="width: 60%; height: 60%;">
+                                <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.223-.937 1.58-6.685 1.58-6.685s-.389-.779-.389-1.937c0-1.811 1.049-3.162 2.357-3.162 1.113 0 1.649.835 1.649 1.834 0 1.116-.707 2.782-1.074 4.32-.305 1.29.636 2.343 1.912 2.343 2.291 0 4.054-2.414 4.054-5.91 0-3.08-2.214-5.236-5.377-5.236-3.663 0-5.81 2.749-5.81 5.605 0 1.11.425 2.296 1.07 2.94.118.129.129.244.096.371l-.348 1.454c-.057.24-.187.291-.424.176-1.9-1.279-3.066-3.852-3.066-6.209 0-4.052 2.939-7.765 8.474-7.765 4.448 0 7.898 3.184 7.898 7.441 0 4.439-2.797 8.019-6.694 8.019-1.308 0-2.539-.678-2.96-1.478l-.807 3.077c-.29 1.11-1.065 2.496-1.587 3.342 1.166.36 2.396.553 3.659.553 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            renderCart();
+        });
+    </script>
+</body>
+</html>
