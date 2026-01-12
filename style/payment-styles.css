@@ -1,0 +1,133 @@
+
+.payment-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 5000;
+    justify-content: center;
+    align-items: center;
+}
+.payment-modal.active {
+    display: flex;
+}
+.payment-content {
+    background-color: var(--primary-color);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+.payment-content h2 {
+    color: var(--accent-color);
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.payment-content .form-group {
+    margin-bottom: 20px;
+}
+.payment-content label {
+    display: block;
+    color: var(--text-light);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.payment-content label span {
+    color: var(--error-color);
+}
+.payment-content input {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--border-color);
+    color: var(--text-light);
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+.payment-content input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+.payment-content input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+.payment-content .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+.payment-content .form-row.full {
+    grid-template-columns: 1fr;
+}
+.close-payment {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-size: 28px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.close-payment:hover {
+    color: var(--text-light);
+}
+.confirmation-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 5000;
+    justify-content: center;
+    align-items: center;
+}
+.confirmation-modal.active {
+    display: flex;
+}
+.confirmation-content {
+    background-color: var(--primary-color);
+    border: 2px solid var(--accent-color);
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+}
+.confirmation-content h2 {
+    color: var(--accent-color);
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+.confirmation-message {
+    color: var(--text-light);
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.confirmation-address {
+    background-color: rgba(212, 175, 55, 0.1);
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.6;
+}
