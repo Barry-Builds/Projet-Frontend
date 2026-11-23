@@ -1,5 +1,4 @@
-
-name: Verification du code
+name: Vérification du code
 
 on:
   push:
@@ -12,14 +11,23 @@ permissions:
 jobs:
   verification:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
-      - name: Recuperer le projet
+      - name: Récupérer le projet
         uses: actions/checkout@v4
 
-      - name: Verifier les fichiers
-        shell: bash
-        run: |
-          echo "Verification du depot..."
-          git ls-files
-          echo "Verification terminee."
+      - name: Configurer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Installer Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Vérifier le site
+        run: npm test

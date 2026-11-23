@@ -150,3 +150,17 @@ Chaque produit contient :
 - Historique commandes
 - Intégration paiement réelle
 - Système d'avis clients
+
+## Vérifications automatiques
+
+Avec Node.js 24, exécuter ces commandes à la racine du dépôt.
+
+```sh
+npm ci
+npx playwright install chromium
+npm test
+```
+
+GitHub Actions exécute la même suite sur les pushs et les pull requests, ainsi
+que sur déclenchement manuel. Les tests ouvrent le site sur un serveur HTTP
+local et bloquent les requêtes vers les services externes.

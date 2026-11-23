@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "playwright": "1.56.1",
+    "postcss": "8.5.10"
+  },
+  "private": true,
+  "scripts": {
+    "test": "node --check js/script.js && node --test"
+  }
+}
