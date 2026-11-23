@@ -1,0 +1,25 @@
+
+name: Verification du code
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verification:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperer le projet
+        uses: actions/checkout@v4
+
+      - name: Verifier les fichiers
+        shell: bash
+        run: |
+          echo "Verification du depot..."
+          git ls-files
+          echo "Verification terminee."
